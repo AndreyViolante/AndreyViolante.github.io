@@ -302,35 +302,39 @@
     <div class="grid">
       <article class="card">
         <figure class="diagram">
-          <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="Cliente chama a API FastAPI, que salva no MongoDB e publica um evento no RabbitMQ ou Kafka, lido por um consumidor">
-            <rect class="dash" x="3" y="3" width="394" height="224" rx="10"/>
-            <text class="m mono" x="14" y="20">docker compose up</text>
-            <rect class="bx" x="14" y="100" width="74" height="50" rx="8"/>
-            <text class="t" x="51" y="121" text-anchor="middle">Cliente</text>
-            <text class="m" x="51" y="138" text-anchor="middle">requisição</text>
-            <path class="ln" d="M88,125 H113"/>
-            <rect class="ac" x="116" y="95" width="88" height="60" rx="10"/>
-            <text class="t" x="160" y="121" text-anchor="middle">FastAPI</text>
-            <text class="m mono" x="160" y="138" text-anchor="middle">order-api</text>
-            <path class="ln" d="M204,108 L233,62"/>
-            <path class="ln" d="M204,125 H233"/>
-            <rect class="bx" x="236" y="34" width="150" height="46" rx="8"/>
-            <text class="t" x="311" y="54" text-anchor="middle">MongoDB</text>
-            <text class="m" x="311" y="70" text-anchor="middle">guarda o pedido</text>
-            <rect class="ac" x="236" y="102" width="150" height="46" rx="8"/>
-            <text class="t" x="311" y="122" text-anchor="middle">RabbitMQ / Kafka</text>
-            <text class="m" x="311" y="138" text-anchor="middle">evento: pedido criado</text>
-            <path class="ln" d="M311,148 V167"/>
-            <rect class="bx" x="236" y="170" width="150" height="46" rx="8"/>
-            <text class="t" x="311" y="190" text-anchor="middle">Consumidor</text>
-            <text class="m" x="311" y="206" text-anchor="middle">processa em segundo plano</text>
+          <svg class="dg" viewBox="0 0 400 236" role="img" aria-label="Notificação de compra do banco é capturada pelo app, guardada no celular e vira um painel com saldo e meta de economia">
+            <rect class="bx" x="10" y="10" width="380" height="50" rx="10"/>
+            <rect class="acs" x="22" y="22" width="26" height="26" rx="6"/>
+            <text class="on t" x="35" y="40" text-anchor="middle">$</text>
+            <text class="t" x="58" y="31">Banco · Compra aprovada</text>
+            <text class="m" x="58" y="47">R$ 42,90 em MERCADO CENTRAL</text>
+            <text class="m" x="378" y="31" text-anchor="end">agora</text>
+            <path class="ln" d="M100,62 V81"/>
+            <rect class="ac" x="10" y="84" width="180" height="46" rx="8"/>
+            <text class="t" x="100" y="104" text-anchor="middle">Captura automática</text>
+            <text class="m mono" x="100" y="120" text-anchor="middle">NotificationListener</text>
+            <path class="ln" d="M190,107 H207"/>
+            <rect class="bx" x="210" y="84" width="180" height="46" rx="8"/>
+            <text class="t" x="300" y="104" text-anchor="middle">Guarda no celular</text>
+            <text class="m" x="300" y="120" text-anchor="middle">MMKV · sem nuvem</text>
+            <path class="ln" d="M300,130 V147"/>
+            <rect class="bx" x="10" y="150" width="380" height="78" rx="10"/>
+            <text class="m" x="24" y="172">Renda</text>
+            <text class="t" x="24" y="189">R$ 3.000</text>
+            <text class="m" x="148" y="172">Gastos no cartão</text>
+            <text class="t" x="148" y="189">R$ 1.240</text>
+            <text class="m" x="272" y="172">Saldo livre</text>
+            <text class="t hl" x="272" y="189">R$ 860</text>
+            <rect class="fl" x="24" y="200" width="352" height="8" rx="4"/>
+            <rect class="acs" x="24" y="200" width="229" height="8" rx="4"/>
+            <text class="m" x="376" y="222" text-anchor="end">meta de economia · 65%</text>
           </svg>
         </figure>
-        <div class="kicker mono">backend</div>
-        <h3 class="pname"><a href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener">Estudos-Backend</a></h3>
-        <p>Três APIs REST com FastAPI, cada uma explorando um padrão: CRUD com PostgreSQL, testes de integração contra banco real e processamento de pedidos orientado a eventos com MongoDB, RabbitMQ e Kafka.</p>
-        <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>Kafka</span><span>Docker</span><span>pytest</span></div>
-        <div class="links"><a href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener">Código →</a></div>
+        <div class="kicker mono">mobile · finanças</div>
+        <h3 class="pname"><a href="https://github.com/AndreyViolante/Finance-Ai" target="_blank" rel="noopener">Finance-Ai</a></h3>
+        <p>App Android de finanças pessoais que registra os gastos sozinho: lê as notificações de compra do banco, extrai o valor e monta um painel com renda, despesas fixas, saldo livre e meta de economia. Os dados ficam só no celular.</p>
+        <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Java</span><span>MMKV</span></div>
+        <div class="links"><a href="https://github.com/AndreyViolante/Finance-Ai" target="_blank" rel="noopener">Código →</a></div>
       </article>
 
       <article class="card">
