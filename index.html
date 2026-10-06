@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrey Violante · Desenvolvedor Backend</title>
+<meta name="description" content="Portfólio de Andrey Violante: estudante de Engenharia de Software, desenvolvedor backend com Python e professor de robótica.">
+<meta property="og:title" content="Andrey Violante · Desenvolvedor Backend">
+<meta property="og:description" content="Backend com Python, apps Android e engenharia reversa de hardware.">
+<meta property="og:image" content="https://github.com/AndreyViolante.png">
+<link rel="icon" href="https://github.com/AndreyViolante.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbf9;
+    --surface: #ffffff;
+    --text: #1b1d21;
+    --muted: #5d636e;
+    --line: #e5e5e0;
+    --accent: #0f7b6c;
+    --accent-soft: #e3f2ef;
+    --code-bg: #f3f3ef;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111315;
+      --surface: #181b1e;
+      --text: #e8e9ea;
+      --muted: #9aa1ab;
+      --line: #2a2e33;
+      --accent: #4fd1b5;
+      --accent-soft: #163a33;
+      --code-bg: #1e2226;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111315;
+    --surface: #181b1e;
+    --text: #e8e9ea;
+    --muted: #9aa1ab;
+    --line: #2a2e33;
+    --accent: #4fd1b5;
+    --accent-soft: #163a33;
+    --code-bg: #1e2226;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav .brand { font-weight: 600; color: var(--text); }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+  .theme-btn {
+    background: none; border: 1px solid var(--line); color: var(--muted);
+    border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: 15px;
+  }
+  @media (max-width: 600px) { nav ul { display: none; } }
+
+  /* hero */
+  .hero { padding: 88px 0 72px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .hero .tag { font-size: 13px; color: var(--accent); margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 0 0 18px; letter-spacing: -0.02em; }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 560px; margin: 0 0 28px; }
+  .hero img {
+    width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
+    border: 4px solid var(--surface); box-shadow: 0 0 0 1px var(--line), var(--shadow);
+  }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 10px; font-weight: 500; font-size: 15px;
+    border: 1px solid var(--line); color: var(--text); background: var(--surface);
+  }
+  .btn:hover { text-decoration: none; border-color: var(--muted); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn svg { width: 17px; height: 17px; fill: currentColor; }
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; padding-top: 56px; }
+    .hero img { width: 112px; height: 112px; order: -1; }
+  }
+
+  /* sections */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 0 0 28px; font-weight: 600; }
+  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .about p { margin: 0 0 14px; }
+  .facts { list-style: none; padding: 0; margin: 0; }
+  .facts li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; }
+  .facts li:last-child { border-bottom: 0; }
+  .facts b { min-width: 92px; font-weight: 500; color: var(--muted); font-size: 14px; }
+  @media (max-width: 680px) { .about { grid-template-columns: 1fr; } }
+
+  /* projects */
+  .featured {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px; box-shadow: var(--shadow); margin-bottom: 20px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  .featured pre {
+    margin: 0; background: var(--code-bg); border-radius: 10px; padding: 16px;
+    font-size: 12.5px; line-height: 1.6; overflow-x: auto; color: var(--text);
+  }
+  .featured pre .c { color: var(--muted); }
+  .featured pre .k { color: var(--accent); }
+  @media (max-width: 760px) { .featured { grid-template-columns: 1fr; } }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--muted); transform: translateY(-2px); }
+  .kicker { font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+  .card h3, .featured h3 { margin: 0 0 10px; font-size: 20px; letter-spacing: -0.01em; }
+  .card p, .featured p { color: var(--muted); margin: 0 0 16px; font-size: 15px; }
+  .card .links, .featured .links { margin-top: auto; display: flex; gap: 16px; font-size: 14px; font-weight: 500; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .tags span {
+    font-family: "JetBrains Mono", monospace; font-size: 11.5px;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 8px; border-radius: 6px;
+  }
+
+  /* stack */
+  .stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .stack h4 { margin: 0 0 10px; font-size: 15px; }
+  .stack ul { list-style: none; margin: 0; padding: 0; color: var(--muted); font-size: 15px; }
+  .stack li { padding: 3px 0; }
+  @media (max-width: 760px) { .stack { grid-template-columns: repeat(2, 1fr); } }
+
+  /* contact */
+  .contact { text-align: center; padding: 72px 0; }
+  .contact h3 { font-size: 28px; margin: 0 0 10px; letter-spacing: -0.01em; }
+  .contact p { color: var(--muted); margin: 0 0 26px; }
+  .contact .btns { justify-content: center; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0; font-size: 13px; color: var(--muted); text-align: center; }
+</style>
+<script>
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand mono">andrey.violante</a>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#stack">Tecnologias</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="theme-btn" id="theme" aria-label="Alternar tema">◐</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="tag mono">// desenvolvedor backend · professor de robótica</div>
+      <h1>Olá, eu sou o Andrey.</h1>
+      <p>Estudante de Engenharia de Software, focado em backend com Python. Aprendo construindo sistemas de verdade: de APIs com mensageria até a engenharia reversa do protocolo de um robô.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projetos">Ver projetos</a>
+        <a class="btn" href="https://github.com/AndreyViolante" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://linkedin.com/in/andrey-violante" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <img src="https://github.com/AndreyViolante.png" alt="Foto de Andrey Violante">
+  </header>
+
+  <section id="sobre">
+    <h2>Sobre</h2>
+    <div class="about">
+      <div>
+        <p>Gosto de entender como as coisas funcionam por dentro. Meu foco é backend: APIs REST com FastAPI e Django, bancos relacionais e NoSQL, mensageria com RabbitMQ e Kafka e tudo rodando em Docker.</p>
+        <p>Fora do backend, já desenvolvi apps Android nativos em Kotlin, um app mobile com IA em React Native e um compilador para um robô educacional que não tinha documentação pública.</p>
+        <p>Também sou professor de robótica, o que me ensinou a explicar coisas técnicas de um jeito simples.</p>
+      </div>
+      <ul class="facts">
+        <li><b>Formação</b><span>Engenharia de Software (em curso)</span></li>
+        <li><b>Foco</b><span>Backend com Python</span></li>
+        <li><b>Estudando</b><span>Mensageria e arquitetura de serviços em containers</span></li>
+        <li><b>Procurando</b><span>Estágio ou vaga de backend júnior</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <h2>Projetos</h2>
+
+    <article class="featured">
+      <div style="display:flex;flex-direction:column">
+        <div class="kicker mono">destaque · engenharia reversa</div>
+        <h3>est-robot</h3>
+        <p>O robô educacional Dr. Luck EST só podia ser programado por uma IDE fechada e sem documentação. Analisei o tráfego USB, mapeei o protocolo HID e o formato binário dos programas e escrevi um compilador que transforma scripts Python no código que o robô executa.</p>
+        <div class="tags"><span>Python</span><span>HID / USB</span><span>Compiladores</span><span>Robótica</span></div>
+        <div class="links"><a href="https://github.com/AndreyViolante/est-robot" target="_blank" rel="noopener">Código →</a></div>
+      </div>
+      <pre class="mono"><span class="c"># seguidor de linha em Python puro</span>
+<span class="k">from</span> est <span class="k">import</span> *
+
+<span class="k">with</span> repetir():
+    se_sensor_cor_2motores(
+        S1, PRETO,
+        se_motor_B_args    = (50, TRAS,   1),
+        se_motor_C_args    = (50, FRENTE, 1),
+        senao_motor_B_args = (50, FRENTE, 1),
+        senao_motor_C_args = (50, TRAS,   1),
+    )
+
+<span class="c"># $ python run.py meu_programa.py
+# compila → 7 pacotes HID → robô</span></pre>
+    </article>
+
+    <div class="grid">
+      <article class="card">
+        <div class="kicker mono">backend</div>
+        <h3>estudos-backend</h3>
+        <p>Três APIs REST com FastAPI, cada uma explorando um padrão: CRUD com PostgreSQL, testes de integração contra banco real e processamento de pedidos orientado a eventos com MongoDB, RabbitMQ e Kafka.</p>
+        <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>Kafka</span><span>Docker</span><span>pytest</span></div>
+        <div class="links"><a href="https://github.com/AndreyViolante/estudos-backend" target="_blank" rel="noopener">Código →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="kicker mono">mobile · IA</div>
+        <h3>EnglishTutor</h3>
+        <p>Tutor de inglês com IA para alunos do 6º ao 9º ano. Uma professora virtual animada conversa por texto e voz, usa método socrático e se adapta à série do aluno. Parte do meu TCC.</p>
+        <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>LLM</span><span>Voz</span></div>
+        <div class="links"><a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">Abrir app →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="kicker mono">android</div>
+        <h3>RegionWatcher</h3>
+        <p>App que vigia uma área da tela e avisa quando ela muda. Um serviço em primeiro plano captura frames, recorta a região e compara por hash perceptual (dHash), com sensibilidade e debounce configuráveis.</p>
+        <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>MediaProjection</span></div>
+        <div class="links"><a href="https://github.com/AndreyViolante/RegionWatcher" target="_blank" rel="noopener">Código →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="kicker mono">web</div>
+        <h3>biblioteca-django</h3>
+        <p>Sistema de acervo de biblioteca com CRUD completo, busca por título ou autor, filtros combináveis por tipo, categoria e disponibilidade e validação de domínio.</p>
+        <div class="tags"><span>Python</span><span>Django</span><span>ORM</span></div>
+        <div class="links"><a href="https://github.com/AndreyViolante/biblioteca-django" target="_blank" rel="noopener">Código →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2>Tecnologias</h2>
+    <div class="stack">
+      <div><h4>Backend</h4><ul><li>Python</li><li>FastAPI</li><li>Django</li><li>pytest</li></ul></div>
+      <div><h4>Dados e mensageria</h4><ul><li>PostgreSQL</li><li>MongoDB</li><li>MySQL</li><li>RabbitMQ</li><li>Kafka</li></ul></div>
+      <div><h4>Mobile e front</h4><ul><li>React Native / Expo</li><li>Kotlin / Compose</li><li>React</li><li>TypeScript</li></ul></div>
+      <div><h4>Ferramentas</h4><ul><li>Docker</li><li>Git</li><li>Linux</li><li>Vercel</li><li>Arduino</li></ul></div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <h3>Vamos conversar?</h3>
+    <p>Estou aberto a oportunidades de estágio e backend júnior.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://linkedin.com/in/andrey-violante" target="_blank" rel="noopener">Falar no LinkedIn</a>
+      <a class="btn" href="https://github.com/AndreyViolante" target="_blank" rel="noopener">Ver GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrey Violante</div>
+</footer>
+
+<script>
+  document.getElementById("theme").addEventListener("click", () => {
+    const root = document.documentElement;
+    const dark = root.dataset.theme
+      ? root.dataset.theme === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+  });
+</script>
+</body>
+</html>
