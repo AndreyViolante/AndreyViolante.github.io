@@ -120,28 +120,50 @@
   .featured {
     background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
     padding: 28px; box-shadow: var(--shadow); margin-bottom: 20px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: center;
   }
-  .featured pre {
-    margin: 0; background: var(--code-bg); border-radius: 10px; padding: 16px;
-    font-size: 12.5px; line-height: 1.6; overflow-x: auto; color: var(--text);
-  }
-  .featured pre .c { color: var(--muted); }
-  .featured pre .k { color: var(--accent); }
+  .featured .body { display: flex; flex-direction: column; }
   @media (max-width: 760px) { .featured { grid-template-columns: 1fr; } }
 
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
   .card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-    padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+    padding: 20px 20px 24px; box-shadow: var(--shadow); display: flex; flex-direction: column;
     transition: border-color .15s, transform .15s;
   }
   .card:hover { border-color: var(--muted); transform: translateY(-2px); }
-  .kicker { font-size: 12px; color: var(--accent); margin-bottom: 6px; }
-  .card h3, .featured h3 { margin: 0 0 10px; font-size: 20px; letter-spacing: -0.01em; }
+  .kicker { font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+  .pname { margin: 0 0 10px; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+  .pname a { color: var(--text); background: linear-gradient(var(--accent), var(--accent)) 0 100% / 100% 3px no-repeat; padding-bottom: 2px; }
+  .pname a:hover { text-decoration: none; color: var(--accent); }
+  .featured .pname { font-size: 32px; }
   .card p, .featured p { color: var(--muted); margin: 0 0 16px; font-size: 15px; }
   .card .links, .featured .links { margin-top: auto; display: flex; gap: 16px; font-size: 14px; font-weight: 500; }
+
+  /* diagramas */
+  .diagram { margin: 0 0 18px; background: var(--code-bg); border-radius: 12px; padding: 12px; }
+  .featured .diagram { margin: 0; }
+  .diagram figcaption { font-size: 12px; color: var(--muted); text-align: center; margin-top: 6px; }
+  .dg { width: 100%; height: auto; display: block; }
+  .dg text { font-family: Inter, system-ui, sans-serif; font-size: 11px; fill: var(--text); }
+  .dg .t { font-weight: 600; font-size: 12.5px; }
+  .dg .m { fill: var(--muted); font-size: 10px; }
+  .dg .mono { font-family: "JetBrains Mono", monospace; }
+  .dg .on { fill: var(--bg); font-weight: 500; }
+  .dg .hl { fill: var(--accent); font-weight: 700; }
+  .dg .bx { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+  .dg .ac { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+  .dg .acs { fill: var(--accent); }
+  .dg .fl { fill: var(--line); }
+  .dg .fm { fill: var(--muted); }
+  .dg .ink { fill: var(--text); }
+  .dg .ln { stroke: var(--muted); stroke-width: 1.4; fill: none; marker-end: url(#arr); }
+  .dg .dash { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 5 4; }
+  .dg .reg { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 5 3; }
+  .dg .trk { stroke: var(--text); stroke-width: 4; stroke-linecap: round; }
+  .dg .face { stroke: var(--text); stroke-width: 1.4; fill: none; stroke-linecap: round; }
+  .arrhead { fill: var(--muted); }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
   .tags span {
     font-family: "JetBrains Mono", monospace; font-size: 11.5px;
@@ -224,58 +246,213 @@
   <section id="projetos">
     <h2>Projetos</h2>
 
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="arrhead"/>
+        </marker>
+      </defs>
+    </svg>
+
     <article class="featured">
-      <div style="display:flex;flex-direction:column">
+      <div class="body">
         <div class="kicker mono">destaque · engenharia reversa</div>
-        <h3>est-robot</h3>
+        <h3 class="pname"><a href="https://github.com/AndreyViolante/est-robot" target="_blank" rel="noopener">est-robot</a></h3>
         <p>O robô educacional Dr. Luck EST só podia ser programado por uma IDE fechada e sem documentação. Analisei o tráfego USB, mapeei o protocolo HID e o formato binário dos programas e escrevi um compilador que transforma scripts Python no código que o robô executa.</p>
         <div class="tags"><span>Python</span><span>HID / USB</span><span>Compiladores</span><span>Robótica</span></div>
         <div class="links"><a href="https://github.com/AndreyViolante/est-robot" target="_blank" rel="noopener">Código →</a></div>
       </div>
-      <pre class="mono"><span class="c"># seguidor de linha em Python puro</span>
-<span class="k">from</span> est <span class="k">import</span> *
-
-<span class="k">with</span> repetir():
-    se_sensor_cor_2motores(
-        S1, PRETO,
-        se_motor_B_args    = (50, TRAS,   1),
-        se_motor_C_args    = (50, FRENTE, 1),
-        senao_motor_B_args = (50, FRENTE, 1),
-        senao_motor_C_args = (50, TRAS,   1),
-    )
-
-<span class="c"># $ python run.py meu_programa.py
-# compila → 7 pacotes HID → robô</span></pre>
+      <figure class="diagram">
+        <svg class="dg" viewBox="0 0 400 250" role="img" aria-label="Fluxo: script Python é compilado para binário e enviado por USB ao robô">
+          <!-- script -->
+          <rect class="bx" x="10" y="10" width="180" height="104" rx="8"/>
+          <circle class="fl" cx="22" cy="22" r="3"/><circle class="fl" cx="32" cy="22" r="3"/><circle class="fl" cx="42" cy="22" r="3"/>
+          <text class="m mono" x="186" y="25" text-anchor="end">meu_programa.py</text>
+          <text class="mono" x="20" y="48" style="font-size:9.5px"><tspan class="hl">from</tspan> est <tspan class="hl">import</tspan> *</text>
+          <text class="mono" x="20" y="64" style="font-size:9.5px"><tspan class="hl">with</tspan> repetir():</text>
+          <text class="mono" x="20" y="80" style="font-size:9.5px;white-space:pre" xml:space="preserve">  se_sensor_cor_2motores(</text>
+          <text class="mono" x="20" y="96" style="font-size:9.5px;white-space:pre" xml:space="preserve">    S1, PRETO, ...)</text>
+          <!-- compilador -->
+          <path class="ln" d="M192,62 H217"/>
+          <rect class="ac" x="220" y="30" width="170" height="64" rx="10"/>
+          <text class="t" x="305" y="57" text-anchor="middle">Compilador</text>
+          <text class="m" x="305" y="75" text-anchor="middle">Python → binário da VM do robô</text>
+          <!-- binário -->
+          <path class="ln" d="M305,96 V125"/>
+          <rect class="bx" x="220" y="128" width="170" height="50" rx="10"/>
+          <text class="mono" x="305" y="150" text-anchor="middle">0A 3F 12 7C 01 …</text>
+          <text class="m" x="305" y="167" text-anchor="middle">programa binário</text>
+          <text class="m" x="305" y="200" text-anchor="middle">enviado por USB HID</text>
+          <text class="m" x="305" y="214" text-anchor="middle">em 7 pacotes</text>
+          <!-- robô -->
+          <path class="ln" d="M218,153 H172"/>
+          <rect class="bx" x="43" y="143" width="12" height="44" rx="4"/>
+          <rect class="bx" x="145" y="143" width="12" height="44" rx="4"/>
+          <rect class="ac" x="55" y="133" width="90" height="62" rx="10"/>
+          <rect class="bx" x="70" y="144" width="60" height="24" rx="4"/>
+          <text class="mono t" x="100" y="160" text-anchor="middle">EST</text>
+          <circle class="acs" cx="80" cy="186" r="4"/><circle class="acs" cx="120" cy="186" r="4"/>
+          <line class="trk" x1="40" y1="206" x2="160" y2="206"/>
+          <text class="t" x="100" y="228" text-anchor="middle">Robô Dr. Luck EST</text>
+          <text class="m" x="100" y="243" text-anchor="middle">segue a linha sozinho</text>
+        </svg>
+      </figure>
     </article>
 
     <div class="grid">
       <article class="card">
+        <figure class="diagram">
+          <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="Cliente chama a API FastAPI, que salva no MongoDB e publica um evento no RabbitMQ ou Kafka, lido por um consumidor">
+            <rect class="dash" x="3" y="3" width="394" height="224" rx="10"/>
+            <text class="m mono" x="14" y="20">docker compose up</text>
+            <rect class="bx" x="14" y="100" width="74" height="50" rx="8"/>
+            <text class="t" x="51" y="121" text-anchor="middle">Cliente</text>
+            <text class="m" x="51" y="138" text-anchor="middle">requisição</text>
+            <path class="ln" d="M88,125 H113"/>
+            <rect class="ac" x="116" y="95" width="88" height="60" rx="10"/>
+            <text class="t" x="160" y="121" text-anchor="middle">FastAPI</text>
+            <text class="m mono" x="160" y="138" text-anchor="middle">order-api</text>
+            <path class="ln" d="M204,108 L233,62"/>
+            <path class="ln" d="M204,125 H233"/>
+            <rect class="bx" x="236" y="34" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="54" text-anchor="middle">MongoDB</text>
+            <text class="m" x="311" y="70" text-anchor="middle">guarda o pedido</text>
+            <rect class="ac" x="236" y="102" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="122" text-anchor="middle">RabbitMQ / Kafka</text>
+            <text class="m" x="311" y="138" text-anchor="middle">evento: pedido criado</text>
+            <path class="ln" d="M311,148 V167"/>
+            <rect class="bx" x="236" y="170" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="190" text-anchor="middle">Consumidor</text>
+            <text class="m" x="311" y="206" text-anchor="middle">processa em segundo plano</text>
+          </svg>
+        </figure>
         <div class="kicker mono">backend</div>
-        <h3>estudos-backend</h3>
+        <h3 class="pname"><a href="https://github.com/AndreyViolante/estudos-backend" target="_blank" rel="noopener">estudos-backend</a></h3>
         <p>Três APIs REST com FastAPI, cada uma explorando um padrão: CRUD com PostgreSQL, testes de integração contra banco real e processamento de pedidos orientado a eventos com MongoDB, RabbitMQ e Kafka.</p>
         <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>Kafka</span><span>Docker</span><span>pytest</span></div>
         <div class="links"><a href="https://github.com/AndreyViolante/estudos-backend" target="_blank" rel="noopener">Código →</a></div>
       </article>
 
       <article class="card">
+        <figure class="diagram">
+          <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="Conversa em que a professora virtual responde com perguntas, e o fluxo: aluno fala, voz vira texto, IA socrática responde, professora fala">
+            <rect class="acs" x="150" y="10" width="236" height="30" rx="14"/>
+            <text class="on" x="268" y="29" text-anchor="middle">How do I say “eu fui” in English?</text>
+            <circle class="ac" cx="24" cy="67" r="16"/>
+            <circle class="ink" cx="19" cy="64" r="1.7"/><circle class="ink" cx="29" cy="64" r="1.7"/>
+            <path class="face" d="M18,71 Q24,77 30,71"/>
+            <rect class="bx" x="48" y="52" width="262" height="30" rx="14"/>
+            <text x="179" y="71" text-anchor="middle">Good question! How do you say “eu vou”?</text>
+            <rect class="acs" x="316" y="92" width="70" height="30" rx="14"/>
+            <text class="on" x="351" y="111" text-anchor="middle">I go!</text>
+            <rect class="bx" x="48" y="132" width="262" height="30" rx="14"/>
+            <text x="179" y="151" text-anchor="middle">Yes! And in the past, “go” becomes…?</text>
+            <rect class="bx" x="1" y="184" width="86" height="34" rx="8"/>
+            <text x="44" y="205" text-anchor="middle" style="font-size:10px">Aluno fala</text>
+            <path class="ln" d="M87,201 H103"/>
+            <rect class="bx" x="105" y="184" width="86" height="34" rx="8"/>
+            <text x="148" y="205" text-anchor="middle" style="font-size:10px">Voz vira texto</text>
+            <path class="ln" d="M191,201 H207"/>
+            <rect class="ac" x="209" y="184" width="86" height="34" rx="8"/>
+            <text x="252" y="205" text-anchor="middle" style="font-size:10px">IA socrática</text>
+            <path class="ln" d="M295,201 H311"/>
+            <rect class="bx" x="313" y="184" width="86" height="34" rx="8"/>
+            <text x="356" y="205" text-anchor="middle" style="font-size:10px">Professora fala</text>
+          </svg>
+        </figure>
         <div class="kicker mono">mobile · IA</div>
-        <h3>EnglishTutor</h3>
+        <h3 class="pname"><a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">EnglishTutor</a></h3>
         <p>Tutor de inglês com IA para alunos do 6º ao 9º ano. Uma professora virtual animada conversa por texto e voz, usa método socrático e se adapta à série do aluno. Parte do meu TCC.</p>
         <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>LLM</span><span>Voz</span></div>
         <div class="links"><a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">Abrir app →</a></div>
       </article>
 
       <article class="card">
+        <figure class="diagram">
+          <svg class="dg" viewBox="0 0 400 220" role="img" aria-label="Celular com uma área marcada; o app compara o hash da área antes e agora e dispara um alerta quando muda">
+            <rect class="bx" x="20" y="8" width="112" height="204" rx="16"/>
+            <rect class="fl" x="60" y="15" width="32" height="5" rx="2.5"/>
+            <rect class="fl" x="32" y="30" width="88" height="8" rx="3"/>
+            <rect class="fl" x="32" y="44" width="60" height="8" rx="3"/>
+            <rect class="reg" x="30" y="64" width="92" height="60" rx="6"/>
+            <rect class="fl" x="40" y="76" width="30" height="8" rx="3"/>
+            <rect class="fl" x="40" y="90" width="44" height="8" rx="3"/>
+            <circle class="acs" cx="106" cy="106" r="8"/>
+            <rect class="fl" x="32" y="136" width="88" height="8" rx="3"/>
+            <rect class="fl" x="32" y="150" width="70" height="8" rx="3"/>
+            <rect class="fl" x="32" y="164" width="80" height="8" rx="3"/>
+            <text class="m" x="76" y="196" text-anchor="middle">área escolhida</text>
+            <path class="ln" d="M125,96 L162,116"/>
+            <text class="m" x="166" y="16">antes</text>
+            <rect class="bx" x="166" y="22" width="62" height="46" rx="6"/>
+            <rect class="fl" x="174" y="32" width="24" height="6" rx="2"/>
+            <rect class="fl" x="174" y="44" width="34" height="6" rx="2"/>
+            <text class="m" x="240" y="36">hash perceptual</text>
+            <text class="mono" x="240" y="54">1011 0110</text>
+            <text class="m" x="166" y="90">agora</text>
+            <rect class="bx" x="166" y="96" width="62" height="46" rx="6"/>
+            <rect class="fl" x="174" y="106" width="24" height="6" rx="2"/>
+            <rect class="fl" x="174" y="118" width="34" height="6" rx="2"/>
+            <circle class="acs" cx="216" cy="130" r="7"/>
+            <text class="mono" x="240" y="124">10<tspan class="hl">0</tspan>1 <tspan class="hl">1</tspan>110</text>
+            <text class="m" x="240" y="140">2 bits diferentes</text>
+            <path class="ln" d="M356,128 V161"/>
+            <rect class="ac" x="166" y="164" width="220" height="44" rx="10"/>
+            <path class="acs" d="M180,193 h15 l-2.5,-3 v-6 a5,5 0 0 0 -10,0 v6 z"/>
+            <circle class="acs" cx="187.5" cy="196" r="2"/>
+            <text class="t" x="204" y="183">Mudou! Alerta disparado</text>
+            <text class="m" x="204" y="199">vibração e notificação</text>
+          </svg>
+        </figure>
         <div class="kicker mono">android</div>
-        <h3>RegionWatcher</h3>
+        <h3 class="pname"><a href="https://github.com/AndreyViolante/RegionWatcher" target="_blank" rel="noopener">RegionWatcher</a></h3>
         <p>App que vigia uma área da tela e avisa quando ela muda. Um serviço em primeiro plano captura frames, recorta a região e compara por hash perceptual (dHash), com sensibilidade e debounce configuráveis.</p>
         <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>MediaProjection</span></div>
         <div class="links"><a href="https://github.com/AndreyViolante/RegionWatcher" target="_blank" rel="noopener">Código →</a></div>
       </article>
 
       <article class="card">
+        <figure class="diagram">
+          <svg class="dg" viewBox="0 0 400 212" role="img" aria-label="Tela de busca do acervo com filtros por tipo, categoria e disponibilidade e a lista de livros encontrados">
+            <rect class="bx" x="10" y="10" width="380" height="34" rx="8"/>
+            <circle cx="28" cy="26" r="6" class="face" style="stroke:var(--muted)"/>
+            <path d="M32.5,30.5 L37,35" class="face" style="stroke:var(--muted)"/>
+            <text x="46" y="31">machado de assis</text>
+            <text class="m" x="380" y="31" text-anchor="end">título ou autor</text>
+            <rect class="ac" x="10" y="54" width="64" height="24" rx="12"/>
+            <text x="42" y="70" text-anchor="middle" style="font-size:10.5px">Físico</text>
+            <rect class="ac" x="80" y="54" width="118" height="24" rx="12"/>
+            <text x="139" y="70" text-anchor="middle" style="font-size:10.5px">800 · Literatura</text>
+            <rect class="ac" x="204" y="54" width="86" height="24" rx="12"/>
+            <text x="247" y="70" text-anchor="middle" style="font-size:10.5px">Disponível</text>
+            <g>
+              <rect class="bx" x="10" y="90" width="380" height="34" rx="8"/>
+              <rect class="acs" x="20" y="97" width="14" height="20" rx="2"/>
+              <text class="t" x="44" y="105">Dom Casmurro</text>
+              <text class="m" x="44" y="118">Machado de Assis · 1899</text>
+              <rect class="ac" x="310" y="99" width="70" height="16" rx="8"/>
+              <text x="345" y="110.5" text-anchor="middle" style="font-size:9.5px">disponível</text>
+            </g>
+            <g>
+              <rect class="bx" x="10" y="130" width="380" height="34" rx="8"/>
+              <rect class="acs" x="20" y="137" width="14" height="20" rx="2"/>
+              <text class="t" x="44" y="145">Memórias Póstumas de Brás Cubas</text>
+              <text class="m" x="44" y="158">Machado de Assis · 1881</text>
+              <rect class="ac" x="310" y="139" width="70" height="16" rx="8"/>
+              <text x="345" y="150.5" text-anchor="middle" style="font-size:9.5px">disponível</text>
+            </g>
+            <g>
+              <rect class="bx" x="10" y="170" width="380" height="34" rx="8"/>
+              <rect class="acs" x="20" y="177" width="14" height="20" rx="2"/>
+              <text class="t" x="44" y="185">Quincas Borba</text>
+              <text class="m" x="44" y="198">Machado de Assis · 1891</text>
+              <rect class="ac" x="310" y="179" width="70" height="16" rx="8"/>
+              <text x="345" y="190.5" text-anchor="middle" style="font-size:9.5px">disponível</text>
+            </g>
+          </svg>
+        </figure>
         <div class="kicker mono">web</div>
-        <h3>biblioteca-django</h3>
+        <h3 class="pname"><a href="https://github.com/AndreyViolante/biblioteca-django" target="_blank" rel="noopener">biblioteca-django</a></h3>
         <p>Sistema de acervo de biblioteca com CRUD completo, busca por título ou autor, filtros combináveis por tipo, categoria e disponibilidade e validação de domínio.</p>
         <div class="tags"><span>Python</span><span>Django</span><span>ORM</span></div>
         <div class="links"><a href="https://github.com/AndreyViolante/biblioteca-django" target="_blank" rel="noopener">Código →</a></div>
