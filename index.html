@@ -164,6 +164,17 @@
   .dg .trk { stroke: var(--text); stroke-width: 4; stroke-linecap: round; }
   .dg .face { stroke: var(--text); stroke-width: 1.4; fill: none; stroke-linecap: round; }
   .arrhead { fill: var(--muted); }
+  .group { font-size: 13px; color: var(--accent); font-weight: 500; margin: 0 0 14px; }
+  .group.others { margin-top: 44px; }
+  .featured.kiara { grid-template-columns: 1.4fr 1fr; }
+  .featured .links .btn { font-size: 15px; }
+  .phone { margin: 0; display: flex; justify-content: center; }
+  .phone img { width: 100%; max-width: 294px; height: auto; display: block; filter: drop-shadow(0 12px 28px rgba(0,0,0,.18)); }
+  @media (max-width: 760px) { .featured.kiara { grid-template-columns: 1fr; } .phone img { max-width: 240px; } }
+  @media (min-width: 681px) {
+    .grid .card:last-child:nth-child(odd) { grid-column: 1 / -1; display: grid; grid-template-columns: 1.1fr 1fr; column-gap: 24px; align-items: start; }
+    .grid .card:last-child:nth-child(odd) .diagram { grid-row: 1 / span 6; margin-bottom: 0; }
+  }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
   .tags span {
     font-family: "JetBrains Mono", monospace; font-size: 11.5px;
@@ -254,13 +265,30 @@
       </defs>
     </svg>
 
+    <h3 class="group mono">// projetos principais</h3>
+
+    <article class="featured kiara">
+      <div class="body">
+        <div class="kicker mono">destaque · mobile · IA</div>
+        <h3 class="pname"><a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">Hi, Kiara!</a></h3>
+        <p>Assistente virtual de prática de inglês para alunos do 6º ao 9º ano. A Kiara, uma personagem animada, conversa por texto e voz: reconhece a fala do aluno e responde falando, adaptando a conversa ao ano escolar, ao nível e aos tópicos de gramática escolhidos.</p>
+        <p>O método é socrático: em vez de entregar a resposta, ela devolve uma pergunta que leva o aluno até lá. Como o público é menor de idade, a IA tem limites de segurança explícitos. Parte prática do meu TCC em Letras.</p>
+        <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>LLM</span><span>Voz</span></div>
+        <div class="links"><a class="btn primary" href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">Abrir o app →</a></div>
+      </div>
+      <figure class="phone">
+        <a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener"><img src="assets/hi-kiara-app.png" alt="Tela inicial do Hi, Kiara! com a Kiara, assistente virtual de inglês" width="294" height="428" loading="lazy"></a>
+      </figure>
+    </article>
+
     <article class="featured">
       <div class="body">
         <div class="kicker mono">destaque · engenharia reversa</div>
         <h3 class="pname"><a href="https://github.com/AndreyViolante/Est-Robot" target="_blank" rel="noopener">Est-Robot</a></h3>
         <p>O robô educacional Dr. Luck EST só podia ser programado por uma IDE fechada e sem documentação. Analisei o tráfego USB, mapeei o protocolo HID e o formato binário dos programas e escrevi um compilador que transforma scripts Python no código que o robô executa.</p>
+        <p>Com isso o robô passa a ser programado em Python puro, sem a IDE proprietária. Uso o projeto nas aulas de robótica e na preparação da equipe para a OBR.</p>
         <div class="tags"><span>Python</span><span>HID / USB</span><span>Compiladores</span><span>Robótica</span></div>
-        <div class="links"><a href="https://github.com/AndreyViolante/Est-Robot" target="_blank" rel="noopener">Código →</a></div>
+        <div class="links"><a class="btn primary" href="https://github.com/AndreyViolante/Est-Robot" target="_blank" rel="noopener">Ver o código →</a></div>
       </div>
       <figure class="diagram">
         <svg class="dg" viewBox="0 0 400 250" role="img" aria-label="Fluxo: script Python é compilado para binário e enviado por USB ao robô">
@@ -299,6 +327,8 @@
       </figure>
     </article>
 
+    <h3 class="group others mono">// outros projetos</h3>
+
     <div class="grid">
       <article class="card">
         <figure class="diagram">
@@ -335,40 +365,6 @@
         <p>App Android de finanças pessoais que registra os gastos sozinho: lê as notificações de compra do banco, extrai o valor e monta um painel com renda, despesas fixas, saldo livre e meta de economia. Os dados ficam só no celular.</p>
         <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Java</span><span>MMKV</span></div>
         <div class="links"><a href="https://github.com/AndreyViolante/Finance-Ai" target="_blank" rel="noopener">Código →</a></div>
-      </article>
-
-      <article class="card">
-        <figure class="diagram">
-          <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="Conversa em que a professora virtual responde com perguntas, e o fluxo: aluno fala, voz vira texto, IA socrática responde, professora fala">
-            <rect class="acs" x="150" y="10" width="236" height="30" rx="14"/>
-            <text class="on" x="268" y="29" text-anchor="middle">How do I say “eu fui” in English?</text>
-            <circle class="ac" cx="24" cy="67" r="16"/>
-            <circle class="ink" cx="19" cy="64" r="1.7"/><circle class="ink" cx="29" cy="64" r="1.7"/>
-            <path class="face" d="M18,71 Q24,77 30,71"/>
-            <rect class="bx" x="48" y="52" width="262" height="30" rx="14"/>
-            <text x="179" y="71" text-anchor="middle">Good question! How do you say “eu vou”?</text>
-            <rect class="acs" x="316" y="92" width="70" height="30" rx="14"/>
-            <text class="on" x="351" y="111" text-anchor="middle">I go!</text>
-            <rect class="bx" x="48" y="132" width="262" height="30" rx="14"/>
-            <text x="179" y="151" text-anchor="middle">Yes! And in the past, “go” becomes…?</text>
-            <rect class="bx" x="1" y="184" width="86" height="34" rx="8"/>
-            <text x="44" y="205" text-anchor="middle" style="font-size:10px">Aluno fala</text>
-            <path class="ln" d="M87,201 H103"/>
-            <rect class="bx" x="105" y="184" width="86" height="34" rx="8"/>
-            <text x="148" y="205" text-anchor="middle" style="font-size:10px">Voz vira texto</text>
-            <path class="ln" d="M191,201 H207"/>
-            <rect class="ac" x="209" y="184" width="86" height="34" rx="8"/>
-            <text x="252" y="205" text-anchor="middle" style="font-size:10px">IA socrática</text>
-            <path class="ln" d="M295,201 H311"/>
-            <rect class="bx" x="313" y="184" width="86" height="34" rx="8"/>
-            <text x="356" y="205" text-anchor="middle" style="font-size:10px">Professora fala</text>
-          </svg>
-        </figure>
-        <div class="kicker mono">mobile · IA</div>
-        <h3 class="pname"><a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">Hi, Kiara!</a></h3>
-        <p>Tutor de inglês com IA para alunos do 6º ao 9º ano. Uma professora virtual animada conversa por texto e voz, usa método socrático e se adapta à série do aluno. Parte do meu TCC.</p>
-        <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>LLM</span><span>Voz</span></div>
-        <div class="links"><a href="https://englishtutor-weld.vercel.app" target="_blank" rel="noopener">Abrir app →</a></div>
       </article>
 
       <article class="card">
