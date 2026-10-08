@@ -185,7 +185,13 @@
   @media (max-width: 900px) {
     .case { grid-template-columns: 1fr; }
     .case-media { position: relative; top: 0; height: auto; padding: 24px 0; }
-    .case-est .case-media { order: -1; }
+    .case-est .case-media {
+      order: -1; position: sticky; top: 0; z-index: 3; padding: 64px 0 18px;
+      background: var(--bg);
+    }
+    .case-est .case-media::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 36px; background: linear-gradient(var(--bg), transparent); pointer-events: none; }
+    .case-est .est { width: auto; height: min(38vh, 380px); max-width: 100%; }
+    .case-est .case-body { padding-top: 0; }
   }
 
   /* kiara */
@@ -205,7 +211,15 @@
   .js .case-kiara.in .bubble { opacity: 1; transform: none; }
   .js .case-kiara.in .b2 { transition-delay: .7s; }
   .js .case-kiara.in .b3 { transition-delay: 1.4s; }
-  @media (max-width: 520px) { .bubble { font-size: 13px; max-width: 62%; padding: 10px 13px; } .b1 { left: 0; } .b2 { right: 0; } .b3 { left: 4%; } }
+  @media (max-width: 900px) {
+    .phone-stage { display: flex; flex-direction: column; gap: 10px; padding: 0; }
+    .phone-stage img { width: 78%; }
+    .bubble { position: static; max-width: 82%; }
+    .bubble.me { align-self: flex-end; border-bottom-left-radius: 18px; border-bottom-right-radius: 4px; }
+    .b2 { align-self: flex-start; border-bottom-right-radius: 18px; border-bottom-left-radius: 4px; }
+    .b1 { margin-top: 20px; }
+  }
+  @media (max-width: 520px) { .bubble { font-size: 14px; padding: 10px 14px; } }
 
   /* est-robot: diagrama por etapas */
   .est { width: min(100%, 520px); height: auto; }
@@ -696,7 +710,7 @@
     if (!e.isIntersecting) return;
     steps.forEach(s => s.classList.toggle("on", s === e.target));
     if (est) est.dataset.step = e.target.dataset.step;
-  }), { rootMargin: "-45% 0px -45% 0px" });
+  }), { rootMargin: matchMedia("(max-width: 900px)").matches ? "-68% 0px -30% 0px" : "-45% 0px -45% 0px" });
   steps.forEach(s => stepIO.observe(s));
   if (steps[0]) steps[0].classList.add("on");
 
