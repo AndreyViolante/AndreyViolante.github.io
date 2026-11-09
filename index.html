@@ -223,9 +223,6 @@
   .shot-cap b { display: block; color: var(--fg); font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
   @media (max-width: 760px) { .lab { grid-template-columns: 1fr; } }
 
-  .case-be .case-media { position: static; height: auto; }
-  .be-diagram { margin: 0; width: min(100%, 520px); padding: 18px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
-  .be-diagram figcaption { margin-top: 12px; text-align: center; }
 
   /* kiara */
   .phone-stage { position: relative; width: min(100%, 420px); padding: 4% 0; }
@@ -555,55 +552,10 @@
       </a>
     </div>
 
-    <article class="case case-be" id="backend">
-      <div class="case-body">
-        <div class="case-index label"><span>03 / 06</span><span>Backend</span></div>
-        <h3 class="case-title"><a href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener" data-cursor="Código">Estudos-Backend</a></h3>
-        <p class="case-tag serif">Três APIs em FastAPI para praticar o que um backend precisa: dados, testes e mensageria.</p>
-        <p>Cada API explora um padrão: CRUD com PostgreSQL e SQLAlchemy 2; testes de integração contra um Postgres de verdade, que sobe no Docker; e uma API de pedidos que salva no MongoDB e publica cada pedido criado no RabbitMQ e no Kafka, para outros serviços consumirem.</p>
-        <p>Tudo sobe com Docker Compose. Ao iniciar, a API de pedidos tenta a conexão de novo até os serviços ficarem prontos, em vez de cair enquanto eles ainda estão subindo.</p>
-        <dl class="meta">
-          <div><dt class="label">APIs</dt><dd>3 em FastAPI e 1 sistema em Django</dd></div>
-          <div><dt class="label">Testes</dt><dd>28 com pytest</dd></div>
-          <div><dt class="label">Bancos</dt><dd>PostgreSQL e MongoDB</dd></div>
-          <div><dt class="label">Mensageria</dt><dd>RabbitMQ e Kafka</dd></div>
-        </dl>
-        <a class="cta magnetic" href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener" data-cursor="Código">Ver o código <span class="arr">↗</span></a>
-      </div>
-      <div class="case-media">
-        <figure class="be-diagram reveal">
-          <svg class="dg" viewBox="0 0 400 236" role="img" aria-label="Uma requisição chega à API de pedidos em FastAPI, que salva o pedido no MongoDB e publica um evento no RabbitMQ e no Kafka; tudo roda em Docker">
-            <rect x="3" y="3" width="394" height="230" rx="10" style="fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 4"/>
-            <text class="m mono" x="14" y="20">docker compose up</text>
-            <rect class="bx" x="14" y="98" width="74" height="50" rx="8"/>
-            <text class="t" x="51" y="119" text-anchor="middle">Cliente</text>
-            <text class="m mono" x="51" y="136" text-anchor="middle">POST</text>
-            <path class="ln" d="M88,123 H113"/>
-            <rect class="ac" x="116" y="93" width="88" height="60" rx="10"/>
-            <text class="t" x="160" y="119" text-anchor="middle">FastAPI</text>
-            <text class="m mono" x="160" y="136" text-anchor="middle">order-api</text>
-            <path class="ln" d="M204,110 L233,56"/>
-            <path class="ln" d="M204,123 H233"/>
-            <path class="ln" d="M204,136 L233,190"/>
-            <rect class="bx" x="236" y="32" width="150" height="46" rx="8"/>
-            <text class="t" x="311" y="52" text-anchor="middle">MongoDB</text>
-            <text class="m" x="311" y="68" text-anchor="middle">guarda o pedido</text>
-            <rect class="ac" x="236" y="100" width="150" height="46" rx="8"/>
-            <text class="t" x="311" y="120" text-anchor="middle">RabbitMQ</text>
-            <text class="m mono" x="311" y="136" text-anchor="middle">fila orders</text>
-            <rect class="ac" x="236" y="168" width="150" height="46" rx="8"/>
-            <text class="t" x="311" y="188" text-anchor="middle">Kafka</text>
-            <text class="m mono" x="311" y="204" text-anchor="middle">tópico orders</text>
-          </svg>
-          <figcaption class="label">A API de pedidos: grava e avisa os outros serviços</figcaption>
-        </figure>
-      </div>
-    </article>
-
     <div class="index">
-      <div class="sec-head" style="margin-bottom:0"><span class="label">Outros projetos</span><span class="label">04 — 06</span></div>
+      <div class="sec-head" style="margin-bottom:0"><span class="label">Outros projetos</span><span class="label">03 — 06</span></div>
       <a class="row" href="https://github.com/AndreyViolante/Finance-Ai" target="_blank" rel="noopener" data-cursor="Código">
-        <span class="row-num">04</span>
+        <span class="row-num">03</span>
         <span class="row-name">Finance-Ai</span>
         <span class="row-desc">App Android que registra os gastos sozinho, lendo as notificações de compra do banco.<span>React Native · TypeScript · Java · MMKV</span></span>
         <span class="row-arr">→</span>
@@ -636,7 +588,7 @@
           </svg></span>
       </a>
       <a class="row" href="https://github.com/AndreyViolante/RegionWatcher" target="_blank" rel="noopener" data-cursor="Código">
-        <span class="row-num">05</span>
+        <span class="row-num">04</span>
         <span class="row-name">RegionWatcher</span>
         <span class="row-desc">Vigia uma área da tela do Android e avisa quando ela muda, comparando hashes perceptuais.<span>Kotlin · Jetpack Compose · MediaProjection</span></span>
         <span class="row-arr">→</span>
@@ -676,7 +628,7 @@
           </svg></span>
       </a>
       <a class="row" href="https://github.com/AndreyViolante/Moodle-Assistente" target="_blank" rel="noopener" data-cursor="Código">
-        <span class="row-num">06</span>
+        <span class="row-num">05</span>
         <span class="row-name">Moodle-Assistente</span>
         <span class="row-desc">Organiza as entregas da faculdade por urgência, avisa no Windows e abre um tutor com IA.<span>Python · API REST · CustomTkinter · Gemini</span></span>
         <span class="row-arr">→</span>
@@ -710,6 +662,35 @@
             <rect class="ac" x="216" y="174" width="174" height="52" rx="8"/>
             <text class="t" x="228" y="195">Tutor com IA</text>
             <text class="m" x="228" y="212">já leu o enunciado e o PDF</text>
+          </svg></span>
+      </a>
+      <a class="row" href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener" data-cursor="Código">
+        <span class="row-num">06</span>
+        <span class="row-name">Estudos-Backend</span>
+        <span class="row-desc">Exercícios de backend da faculdade: APIs em FastAPI com bancos, testes e mensageria.<span>FastAPI · PostgreSQL · MongoDB · RabbitMQ · Kafka</span></span>
+        <span class="row-arr">→</span>
+        <span class="row-fig"><svg class="dg" viewBox="0 0 400 236" role="img" aria-label="Uma requisição chega à API de pedidos em FastAPI, que salva o pedido no MongoDB e publica um evento no RabbitMQ e no Kafka; tudo roda em Docker">
+            <rect class="dash" x="3" y="3" width="394" height="230" rx="10" style="fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 4"/>
+            <text class="m mono" x="14" y="20">docker compose up</text>
+            <rect class="bx" x="14" y="98" width="74" height="50" rx="8"/>
+            <text class="t" x="51" y="119" text-anchor="middle">Cliente</text>
+            <text class="m mono" x="51" y="136" text-anchor="middle">POST</text>
+            <path class="ln" d="M88,123 H113"/>
+            <rect class="ac" x="116" y="93" width="88" height="60" rx="10"/>
+            <text class="t" x="160" y="119" text-anchor="middle">FastAPI</text>
+            <text class="m mono" x="160" y="136" text-anchor="middle">order-api</text>
+            <path class="ln" d="M204,110 L233,56"/>
+            <path class="ln" d="M204,123 H233"/>
+            <path class="ln" d="M204,136 L233,190"/>
+            <rect class="bx" x="236" y="32" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="52" text-anchor="middle">MongoDB</text>
+            <text class="m" x="311" y="68" text-anchor="middle">guarda o pedido</text>
+            <rect class="ac" x="236" y="100" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="120" text-anchor="middle">RabbitMQ</text>
+            <text class="m mono" x="311" y="136" text-anchor="middle">fila orders</text>
+            <rect class="ac" x="236" y="168" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="188" text-anchor="middle">Kafka</text>
+            <text class="m mono" x="311" y="204" text-anchor="middle">tópico orders</text>
           </svg></span>
       </a>
     </div>
