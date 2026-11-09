@@ -8,7 +8,17 @@
 <meta name="theme-color" content="#0c0c0d">
 <meta property="og:title" content="Andrey Violante · Desenvolvedor Backend">
 <meta property="og:description" content="Backend com Python, apps com IA e engenharia reversa de hardware.">
-<meta property="og:image" content="https://github.com/AndreyViolante.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://andreyviolante.github.io/">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Andrey Violante">
+<meta property="og:image" content="https://andreyviolante.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Andrey Violante, desenvolvedor backend">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://andreyviolante.github.io/assets/og.jpg">
+<link rel="canonical" href="https://andreyviolante.github.io/">
 <link rel="icon" href="https://github.com/AndreyViolante.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -205,6 +215,10 @@
   .shot-cap b { display: block; color: var(--fg); font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
   @media (max-width: 760px) { .lab { grid-template-columns: 1fr; } }
 
+  .case-be .case-media { position: static; height: auto; }
+  .be-diagram { margin: 0; width: min(100%, 520px); padding: 18px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+  .be-diagram figcaption { margin-top: 12px; text-align: center; }
+
   /* kiara */
   .phone-stage { position: relative; width: min(100%, 420px); padding: 4% 0; }
   .phone-stage img { width: 74%; height: auto; margin: 0 auto; filter: drop-shadow(0 30px 60px rgba(40, 20, 120, .25)); animation: float 6s ease-in-out infinite; }
@@ -336,6 +350,7 @@
   .links a:hover::after { transform: scaleX(0); transform-origin: right; }
   footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px var(--pad); border-top: 1px solid var(--line); }
   footer a:hover { color: var(--accent); }
+  @media (hover: none) { .links a, footer a { display: inline-block; padding: 12px 0; } footer { align-items: center; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
@@ -363,6 +378,7 @@
     <li><a href="#trabalhos" data-cursor-link><span>02</span>Trabalhos</a></li>
     <li><a href="#stack" data-cursor-link><span>03</span>Stack</a></li>
     <li><a href="#contato" data-cursor-link><span>04</span>Contato</a></li>
+    <li><a href="assets/curriculo-andrey-violante.pdf" download data-cursor-link><span>05</span>Currículo</a></li>
   </ul>
   <div class="nav-meta"><span class="pulse"></span><span>Disponível</span><span class="clock-nav">· <span data-clock>--:--</span> BRT</span></div>
 </header>
@@ -410,7 +426,7 @@
 
   <section id="trabalhos" class="sec wrap">
     <div class="sec-head"><span class="label">(02) Trabalhos</span><span class="label">2026</span></div>
-    <h2 class="work-title reveal">Trabalhos <em>selecionados</em><sup>(05)</sup></h2>
+    <h2 class="work-title reveal">Trabalhos <em>selecionados</em><sup>(06)</sup></h2>
 
     <article class="case case-kiara" id="kiara">
       <div class="case-media">
@@ -422,7 +438,7 @@
         </div>
       </div>
       <div class="case-body">
-        <div class="case-index label"><span>01 / 05</span><span>Web e mobile · IA</span></div>
+        <div class="case-index label"><span>01 / 06</span><span>Web e mobile · IA</span></div>
         <h3 class="case-title"><a href="https://hi-kiara.vercel.app" target="_blank" rel="noopener" data-cursor="Abrir">Hi, Kiara!</a></h3>
         <p class="case-tag serif">Uma assistente que ensina inglês fazendo perguntas, não dando respostas.</p>
         <p>Assistente virtual para alunos do 6º ao 9º ano praticarem inglês conversando por voz ou por texto, no ritmo de cada um. O aluno escolhe o ano, os temas do currículo e um modo: explicação, questões críticas ou role-play, em que a Kiara vira um personagem e o aluno ganha uma missão.</p>
@@ -440,7 +456,7 @@
 
     <article class="case case-est" id="est">
       <div class="case-body">
-        <div class="case-index label"><span>02 / 05</span><span>Engenharia reversa · Educação</span></div>
+        <div class="case-index label"><span>02 / 06</span><span>Engenharia reversa · Educação</span></div>
         <h3 class="case-title"><a href="https://andreyviolante.github.io/est-robot/" target="_blank" rel="noopener" data-cursor="Abrir">EST-LAB</a></h3>
         <p class="case-tag serif">Python em português para um robô que não tinha documentação nenhuma.</p>
         <p>O robô educacional Dr. Luck EST só podia ser programado por uma IDE fechada. Comecei pelos bytes que passavam pelo cabo USB e cheguei a uma ferramenta gratuita e de código aberto para aulas de robótica.</p>
@@ -522,10 +538,55 @@
       </a>
     </div>
 
+    <article class="case case-be" id="backend">
+      <div class="case-body">
+        <div class="case-index label"><span>03 / 06</span><span>Backend</span></div>
+        <h3 class="case-title"><a href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener" data-cursor="Código">Estudos-Backend</a></h3>
+        <p class="case-tag serif">Três APIs em FastAPI para praticar o que um backend precisa: dados, testes e mensageria.</p>
+        <p>Cada API explora um padrão: CRUD com PostgreSQL e SQLAlchemy 2; testes de integração contra um Postgres de verdade, que sobe no Docker; e uma API de pedidos que salva no MongoDB e publica cada pedido criado no RabbitMQ e no Kafka, para outros serviços consumirem.</p>
+        <p>Tudo sobe com Docker Compose. Ao iniciar, a API de pedidos tenta a conexão de novo até os serviços ficarem prontos, em vez de cair enquanto eles ainda estão subindo.</p>
+        <dl class="meta">
+          <div><dt class="label">APIs</dt><dd>3 em FastAPI e 1 sistema em Django</dd></div>
+          <div><dt class="label">Testes</dt><dd>28 com pytest</dd></div>
+          <div><dt class="label">Bancos</dt><dd>PostgreSQL e MongoDB</dd></div>
+          <div><dt class="label">Mensageria</dt><dd>RabbitMQ e Kafka</dd></div>
+        </dl>
+        <a class="cta magnetic" href="https://github.com/AndreyViolante/Estudos-Backend" target="_blank" rel="noopener" data-cursor="Código">Ver o código <span class="arr">↗</span></a>
+      </div>
+      <div class="case-media">
+        <figure class="be-diagram reveal">
+          <svg class="dg" viewBox="0 0 400 236" role="img" aria-label="Uma requisição chega à API de pedidos em FastAPI, que salva o pedido no MongoDB e publica um evento no RabbitMQ e no Kafka; tudo roda em Docker">
+            <rect x="3" y="3" width="394" height="230" rx="10" style="fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 4"/>
+            <text class="m mono" x="14" y="20">docker compose up</text>
+            <rect class="bx" x="14" y="98" width="74" height="50" rx="8"/>
+            <text class="t" x="51" y="119" text-anchor="middle">Cliente</text>
+            <text class="m mono" x="51" y="136" text-anchor="middle">POST</text>
+            <path class="ln" d="M88,123 H113"/>
+            <rect class="ac" x="116" y="93" width="88" height="60" rx="10"/>
+            <text class="t" x="160" y="119" text-anchor="middle">FastAPI</text>
+            <text class="m mono" x="160" y="136" text-anchor="middle">order-api</text>
+            <path class="ln" d="M204,110 L233,56"/>
+            <path class="ln" d="M204,123 H233"/>
+            <path class="ln" d="M204,136 L233,190"/>
+            <rect class="bx" x="236" y="32" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="52" text-anchor="middle">MongoDB</text>
+            <text class="m" x="311" y="68" text-anchor="middle">guarda o pedido</text>
+            <rect class="ac" x="236" y="100" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="120" text-anchor="middle">RabbitMQ</text>
+            <text class="m mono" x="311" y="136" text-anchor="middle">fila orders</text>
+            <rect class="ac" x="236" y="168" width="150" height="46" rx="8"/>
+            <text class="t" x="311" y="188" text-anchor="middle">Kafka</text>
+            <text class="m mono" x="311" y="204" text-anchor="middle">tópico orders</text>
+          </svg>
+          <figcaption class="label">A API de pedidos: grava e avisa os outros serviços</figcaption>
+        </figure>
+      </div>
+    </article>
+
     <div class="index">
-      <div class="sec-head" style="margin-bottom:0"><span class="label">Outros projetos</span><span class="label">03 — 05</span></div>
+      <div class="sec-head" style="margin-bottom:0"><span class="label">Outros projetos</span><span class="label">04 — 06</span></div>
       <a class="row" href="https://github.com/AndreyViolante/Finance-Ai" target="_blank" rel="noopener" data-cursor="Código">
-        <span class="row-num">03</span>
+        <span class="row-num">04</span>
         <span class="row-name">Finance-Ai</span>
         <span class="row-desc">App Android que registra os gastos sozinho, lendo as notificações de compra do banco.<span>React Native · TypeScript · Java · MMKV</span></span>
         <span class="row-arr">→</span>
@@ -558,7 +619,7 @@
           </svg></span>
       </a>
       <a class="row" href="https://github.com/AndreyViolante/RegionWatcher" target="_blank" rel="noopener" data-cursor="Código">
-        <span class="row-num">04</span>
+        <span class="row-num">05</span>
         <span class="row-name">RegionWatcher</span>
         <span class="row-desc">Vigia uma área da tela do Android e avisa quando ela muda, comparando hashes perceptuais.<span>Kotlin · Jetpack Compose · MediaProjection</span></span>
         <span class="row-arr">→</span>
@@ -598,7 +659,7 @@
           </svg></span>
       </a>
       <a class="row" href="https://github.com/AndreyViolante/Moodle-Assistente" target="_blank" rel="noopener" data-cursor="Código">
-        <span class="row-num">05</span>
+        <span class="row-num">06</span>
         <span class="row-name">Moodle-Assistente</span>
         <span class="row-desc">Organiza as entregas da faculdade por urgência, avisa no Windows e abre um tutor com IA.<span>Python · API REST · CustomTkinter · Gemini</span></span>
         <span class="row-arr">→</span>
@@ -651,10 +712,12 @@
     <div class="sec-head"><span class="label">(04) Contato</span><span class="label">Estágio · Backend júnior</span></div>
     <h2 class="contact-title reveal">Vamos<br><em>conversar?</em></h2>
     <div class="contact-row">
-      <p>Estou aberto a oportunidades de estágio e de backend júnior. O jeito mais rápido de falar comigo é pelo LinkedIn.</p>
+      <p>Estou aberto a oportunidades de estágio e de backend júnior. Pode me chamar pelo LinkedIn ou pelo e-mail <a class="ul" href="mailto:andreyviolante@gmail.com" data-cursor-link>andreyviolante@gmail.com</a>.</p>
       <a class="big-btn magnetic" href="https://linkedin.com/in/andrey-violante" target="_blank" rel="noopener" data-cursor="Oi!">Falar no<br>LinkedIn ↗</a>
     </div>
     <div class="links">
+      <a href="mailto:andreyviolante@gmail.com" data-cursor-link>E-mail</a>
+      <a href="assets/curriculo-andrey-violante.pdf" download data-cursor-link>Currículo (PDF)</a>
       <a href="https://linkedin.com/in/andrey-violante" target="_blank" rel="noopener" data-cursor-link>LinkedIn</a>
       <a href="https://github.com/AndreyViolante" target="_blank" rel="noopener" data-cursor-link>GitHub</a>
     </div>
