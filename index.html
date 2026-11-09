@@ -169,6 +169,14 @@
   .facts dt { margin-bottom: 8px; }
   .facts dd { margin: 0; font-size: 19px; line-height: 1.35; }
   @media (max-width: 820px) { .facts { grid-template-columns: 1fr 1fr; } }
+  .trail { margin-top: clamp(64px, 10vh, 120px); }
+  .trail h3 { margin: 0 0 8px; font-weight: 500; }
+  .trail ol { list-style: none; margin: 0; padding: 0; }
+  .trail li { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .trail .when { font: 500 13px/1.6 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+  .trail b { display: block; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+  .trail p { margin: 6px 0 0; color: var(--muted); max-width: 60ch; }
+  @media (max-width: 600px) { .trail li { grid-template-columns: 1fr; gap: 6px; } }
 
   /* trabalhos */
   .work-title { margin: 0 0 clamp(48px, 8vh, 96px); font-size: clamp(56px, 11vw, 180px); line-height: .9; letter-spacing: -.05em; font-weight: 600; }
@@ -417,11 +425,20 @@
     <div class="sec-head"><span class="label">(01) Sobre</span><span class="label">Quem sou</span></div>
     <p class="manifesto" id="manifesto">Gosto de abrir a caixa-preta. Estudo Engenharia de Software com foco em <em>backend</em>: APIs, bancos de dados e serviços que conversam por mensageria. Já fiz um compilador para um robô que <em>ninguém documentou</em>, um app de finanças que lê as notificações do banco e uma assistente de inglês que ensina <em>perguntando</em>. Também sou professor de robótica, e isso me ensinou a explicar o difícil de um jeito simples.</p>
     <dl class="facts">
-      <div class="reveal"><dt class="label">Formação</dt><dd>Engenharia de Software, em curso</dd></div>
+      <div class="reveal"><dt class="label">Formação</dt><dd>Engenharia de Software, 6º período</dd></div>
       <div class="reveal"><dt class="label">Foco</dt><dd>Backend com Python</dd></div>
-      <div class="reveal"><dt class="label">Também</dt><dd>Professor de robótica</dd></div>
+      <div class="reveal"><dt class="label">Idiomas</dt><dd>Português e inglês avançado</dd></div>
       <div class="reveal"><dt class="label">Procurando</dt><dd>Estágio ou vaga de backend júnior</dd></div>
     </dl>
+    <div class="trail">
+      <h3 class="label">Trajetória</h3>
+      <ol>
+        <li class="reveal"><span class="when">Ago 2023</span><div><b>Professor de robótica</b><p>Prefeitura Municipal de Maricá. Aulas de robótica e programação e preparação de equipe para a OBR.</p></div></li>
+        <li class="reveal"><span class="when">2026</span><div><b>EST-LAB</b><p>Compilador e linguagem em português para programar o robô das aulas, com simulador e versão no navegador.</p></div></li>
+        <li class="reveal"><span class="when">2026</span><div><b>Hi, Kiara!</b><p>Assistente de inglês com IA, apresentada na VI Mostra Pedagógica de Maricá.</p></div></li>
+        <li class="reveal"><span class="when">Hoje</span><div><b>Engenharia de Software</b><p>6º período na Universidade de Vassouras, com foco em backend.</p></div></li>
+      </ol>
+    </div>
   </section>
 
   <section id="trabalhos" class="sec wrap">
