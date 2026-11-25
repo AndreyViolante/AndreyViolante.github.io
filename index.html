@@ -216,12 +216,13 @@
   }
 
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
-  .cta.ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--line); }
+  .cta.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); padding: 17px 27px; }
   .ul { border-bottom: 1px solid currentColor; }
   .lab { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-bottom: clamp(24px, 6vh, 64px); }
   .shot { display: block; }
-  .shot img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); transition: transform .7s var(--ease); }
-  .shot:hover img { transform: translateY(-6px); }
+  .shot-img { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; will-change: transform; transition: transform .7s var(--ease); }
+  .shot img { display: block; width: 100%; height: auto; will-change: transform; }
+  .shot:hover .shot-img { transform: translateY(-6px); }
   .shot-cap { display: block; margin-top: 14px; color: var(--muted); font-size: 16px; }
   .shot-cap b { display: block; color: var(--fg); font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
   @media (max-width: 760px) { .lab { grid-template-columns: 1fr; } }
@@ -549,11 +550,11 @@
 
     <div class="lab">
       <a class="shot reveal" href="https://andreyviolante.github.io/est-robot/programar/" target="_blank" rel="noopener" data-cursor="Abrir">
-        <img src="assets/est-blocos.webp" alt="Página de programar do EST-LAB com blocos à esquerda e o Python gerado à direita" width="1400" height="800" loading="lazy">
+        <span class="shot-img"><img src="assets/est-blocos.webp" alt="Página de programar do EST-LAB com blocos à esquerda e o Python gerado à direita" width="1400" height="800" loading="lazy"></span>
         <span class="shot-cap"><b>Programar</b>Blocos e Python lado a lado, no navegador e sem instalar nada.</span>
       </a>
       <a class="shot reveal" href="https://andreyviolante.github.io/est-robot/simulador/" target="_blank" rel="noopener" data-cursor="Abrir">
-        <img src="assets/est-simulador.webp" alt="Simulador do EST-LAB com o robô seguindo uma linha quadrada" width="1400" height="800" loading="lazy">
+        <span class="shot-img"><img src="assets/est-simulador.webp" alt="Simulador do EST-LAB com o robô seguindo uma linha quadrada" width="1400" height="800" loading="lazy"></span>
         <span class="shot-cap"><b>Simulador</b>Desafios e arena da OBR para testar o programa sem o robô.</span>
       </a>
     </div>
