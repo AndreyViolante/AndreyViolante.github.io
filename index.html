@@ -27,22 +27,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  @property --bg      { syntax: '<color>'; inherits: true; initial-value: #0c0c0d; }
-  @property --fg      { syntax: '<color>'; inherits: true; initial-value: #efece6; }
-  @property --muted   { syntax: '<color>'; inherits: true; initial-value: #8b8881; }
-  @property --line    { syntax: '<color>'; inherits: true; initial-value: rgba(239,236,230,.14); }
-  @property --surface { syntax: '<color>'; inherits: true; initial-value: #161618; }
-  @property --accent  { syntax: '<color>'; inherits: true; initial-value: #c6f432; }
-  @property --ink     { syntax: '<color>'; inherits: true; initial-value: #0c0c0d; }
-
   :root {
     --bg: #0c0c0d; --fg: #efece6; --muted: #8b8881; --line: rgba(239,236,230,.14);
     --surface: #161618; --accent: #c6f432; --ink: #0c0c0d;
     --soft: color-mix(in srgb, var(--accent) 14%, transparent);
     --pad: clamp(16px, 4vw, 56px);
-    --ease: cubic-bezier(.2,.7,.1,1);
-    transition: --bg .9s var(--ease), --fg .9s var(--ease), --muted .9s var(--ease), --line .9s var(--ease),
-                --surface .9s var(--ease), --accent .9s var(--ease), --ink .9s var(--ease);
+    --ease: cubic-bezier(.2,.7,.1,1); --swap: .7s cubic-bezier(.2,.7,.1,1);
   }
   :root[data-section="kiara"] {
     --bg: #ebe6ff; --fg: #17122e; --muted: #5f5880; --line: rgba(23,18,46,.14);
@@ -52,10 +42,12 @@
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; background: var(--bg); color: var(--fg);
+    margin: 0; background: #0c0c0d; color: var(--fg);
     font: 400 17px/1.55 "Inter Tight", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
+  body::before { content: ""; position: fixed; inset: -20vh 0; z-index: -1; pointer-events: none; background: #ebe6ff; opacity: 0; will-change: opacity; transition: opacity var(--swap); }
+  :root[data-section="kiara"] body::before { opacity: 1; }
   ::selection { background: var(--accent); color: var(--ink); }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
@@ -116,8 +108,9 @@
   .lang { padding: 5px 9px; border: 1px solid currentColor; border-radius: 999px; font-size: 11px; letter-spacing: .08em; margin-right: 6px; }
   .lang:hover { background: #fff; color: #000; }
   @media (hover: none) { .lang { padding: 9px 12px; } }
-  .pulse { width: 8px; height: 8px; border-radius: 50%; background: #c6f432; box-shadow: 0 0 0 0 rgba(198,244,50,.6); animation: pulse 2s infinite; }
-  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(198,244,50,0); } 100% { box-shadow: 0 0 0 0 rgba(198,244,50,0); } }
+  .pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #c6f432; }
+  .pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: rgba(198,244,50,.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 70%, 100% { transform: scale(3.5); opacity: 0; } }
   @media (max-width: 820px) { .nav ul { display: none; } .nav { grid-template-columns: 1fr auto; } }
   @media (max-width: 420px) { .nav-meta .clock-nav { display: none; } }
 
@@ -126,7 +119,7 @@
   .hero-meta { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .hero-title { margin: 0; font-weight: 600; font-size: clamp(68px, 17.5vw, 290px); line-height: .84; letter-spacing: -.055em; }
   .hero-title .line { display: block; overflow: hidden; padding-bottom: .04em; }
-  .hero-title .line > span { display: inline-flex; align-items: center; gap: .12em; will-change: transform; }
+  .hero-title .line > span { display: inline-flex; align-items: center; gap: .12em; will-change: transform, translate; }
   .hero-title .l2 { text-align: right; }
   .hero-title em { font-size: 1.08em; letter-spacing: -.035em; }
   .hero-photo { height: 1em; width: auto; margin-left: -.04em; flex: none; align-self: flex-end; -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%), linear-gradient(to right, transparent 0, #000 18%, #000 84%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, #000 62%, transparent 100%), linear-gradient(to right, transparent 0, #000 18%, #000 84%, transparent 100%); mask-composite: intersect; }
@@ -136,8 +129,8 @@
   .roles li::before { content: "→ "; color: var(--accent); }
   .scroll-cue { display: flex; align-items: center; gap: 10px; }
   .scroll-cue i { display: block; width: 1px; height: 46px; background: var(--line); position: relative; overflow: hidden; }
-  .scroll-cue i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--fg); animation: drip 1.8s var(--ease) infinite; }
-  @keyframes drip { to { top: 100%; } }
+  .scroll-cue i::after { content: ""; position: absolute; left: 0; top: 0; width: 1px; height: 40%; background: var(--fg); transform: translateY(-100%); animation: drip 1.8s var(--ease) infinite; }
+  @keyframes drip { to { transform: translateY(250%); } }
   @media (max-width: 760px) { .hero-foot { grid-template-columns: 1fr; gap: 20px; } .scroll-cue { display: none; } }
   @media (max-width: 600px) { .hero-title { font-size: 20vw; } .hero-photo { height: .78em; } }
 
@@ -155,6 +148,7 @@
   .marquee b { color: var(--accent); font-weight: 400; padding-right: .5em; font-size: clamp(24px, 4vw, 56px); align-self: center; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
   @keyframes marquee { to { transform: translateX(-50%); } }
+  .js .marquee:not(.live) .marquee-track, .js .scroll-cue:not(.live) i::after, .js .phone-stage:not(.live) img, .js .est:not(.live) .flow, .nav.is-hidden .pulse::after { animation-play-state: paused !important; }
 
   /* seções */
   section { position: relative; }
@@ -202,7 +196,7 @@
   .cta {
     display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; border-radius: 999px;
     background: var(--accent); color: var(--ink); font-weight: 600; font-size: 16px; will-change: transform;
-    transition: background-color .9s var(--ease), color .9s var(--ease);
+    transition: background-color var(--swap), color var(--swap);
   }
   .cta .arr { display: inline-block; transition: transform .4s var(--ease); }
   .cta:hover .arr { transform: translate(3px, -3px) rotate(0deg); }
@@ -211,9 +205,12 @@
     .case-media { position: relative; top: 0; height: auto; padding: 24px 0; }
     .case-est .case-media {
       order: -1; position: sticky; top: 0; z-index: 3; padding: 64px 0 18px;
-      background: var(--bg);
+      background: #0c0c0d;
     }
-    .case-est .case-media::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 36px; background: linear-gradient(var(--bg), transparent); pointer-events: none; }
+    .case-est .case-media::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #ebe6ff; opacity: 0; transition: opacity var(--swap); }
+    :root[data-section="kiara"] .case-est .case-media::before { opacity: 1; }
+    :root[data-section="kiara"] .case-est .case-media::after { opacity: 0; }
+    .case-est .case-media::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 36px; background: linear-gradient(#0c0c0d, transparent); pointer-events: none; transition: opacity var(--swap); }
     .case-est .est { width: auto; height: min(38vh, 380px); max-width: 100%; }
     .case-est .case-body { padding-top: 0; }
   }
@@ -230,6 +227,9 @@
   @media (max-width: 760px) { .lab { grid-template-columns: 1fr; } }
 
 
+  .work-title sup, #trabalhos .sec-head .label, .case-kiara :is(.label, .case-title, p, dd), .case-est :is(.case-index, .case-title, .case-tag) { transition: color var(--swap); }
+  .js .work-title.reveal { transition: opacity 1s var(--ease), transform 1s var(--ease), color var(--swap); }
+
   /* kiara */
   .phone-stage { position: relative; width: min(100%, 420px); padding: 4% 0; }
   .phone-stage img { width: 74%; height: auto; margin: 0 auto; filter: drop-shadow(0 30px 60px rgba(40, 20, 120, .25)); animation: float 6s ease-in-out infinite; }
@@ -243,10 +243,10 @@
   .b1 { top: 14%; left: -6%; border-bottom-left-radius: 4px; }
   .b2 { top: 44%; right: -8%; border-bottom-right-radius: 4px; }
   .b3 { bottom: 12%; left: 0; border-bottom-left-radius: 4px; }
-  .js .bubble { opacity: 0; transform: translateY(16px) scale(.96); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .js .bubble { opacity: 0; transform: translateY(16px) scale(.96); transition: opacity .6s var(--ease), transform .6s var(--ease), background-color var(--swap), color var(--swap); }
   .js .case-kiara.in .bubble { opacity: 1; transform: none; }
-  .js .case-kiara.in .b2 { transition-delay: .7s; }
-  .js .case-kiara.in .b3 { transition-delay: 1.4s; }
+  .js .case-kiara.in .b2 { transition-delay: .7s, .7s, 0s, 0s; }
+  .js .case-kiara.in .b3 { transition-delay: 1.4s, 1.4s, 0s, 0s; }
   @media (max-width: 900px) {
     .phone-stage { display: flex; flex-direction: column; gap: 10px; padding: 0; }
     .phone-stage img { width: 78%; }
@@ -259,12 +259,12 @@
 
   /* est-lab: diagrama por etapas */
   .est { width: min(100%, 520px); height: auto; }
-  .est text { font-family: "Inter Tight", sans-serif; font-size: 13px; fill: var(--fg); }
+  .est text { font-family: "Inter Tight", sans-serif; font-size: 13px; fill: var(--fg); transition: fill var(--swap); }
   .est .m { fill: var(--muted); font-size: 11px; font-family: "JetBrains Mono", monospace; letter-spacing: .02em; }
   .est .t { font-weight: 600; font-size: 15px; }
   .est .mono { font-family: "JetBrains Mono", monospace; font-size: 12px; }
   .est .hl { fill: var(--accent); font-weight: 600; }
-  .est .nb { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; transition: stroke .5s; }
+  .est .nb { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; transition: stroke .5s, fill var(--swap); }
   .est .chip { fill: none; stroke: var(--line); }
   .est .chip.on { fill: var(--accent); stroke: var(--accent); }
   .est .chip-t { font-family: "JetBrains Mono", monospace; font-size: 9.5px; fill: var(--muted); }
@@ -313,7 +313,7 @@
   .preview {
     position: fixed; left: 0; top: 0; z-index: 70; width: 400px; padding: 14px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line);
     box-shadow: 0 30px 80px rgba(0,0,0,.45); pointer-events: none; opacity: 0; transform: scale(.85);
-    transition: opacity .3s, transform .45s var(--ease); will-change: left, top;
+    transition: opacity .3s, transform .45s var(--ease); will-change: transform, translate;
   }
   .preview.on { opacity: 1; transform: scale(1); }
 
@@ -795,6 +795,8 @@
   /* revelações */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  const live = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("live", e.isIntersecting)), { rootMargin: "10% 0px" });
+  document.querySelectorAll(".marquee, .scroll-cue, .phone-stage, .est").forEach(el => live.observe(el));
   const kiara = document.getElementById("kiara");
   new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) kiara.classList.add("in"); }), { threshold: .3 }).observe(kiara);
 
@@ -816,24 +818,25 @@
 
   /* rolagem: parallax do hero, manifesto, nav */
   const nav = document.getElementById("nav"), t1 = document.getElementById("t1"), t2 = document.getElementById("t2");
-  let lastY = 0;
+  let lastY = 0, manTop = 0, manH = 1, lit = 0;
+  const measure = () => { const r = man.getBoundingClientRect(); manTop = r.top + scrollY; manH = r.height; };
   const onScroll = y => {
     const vh = innerHeight;
     if (!reduce && y < vh * 1.2 && root.classList.contains("loaded")) {
-      t1.style.transform = `translateX(${-y * 0.12}px)`;
-      t2.style.transform = `translateX(${y * 0.12}px)`;
+      t1.style.translate = `${-y * 0.12}px`;
+      t2.style.translate = `${y * 0.12}px`;
     }
-    const r = man.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.25)));
-    const lit = Math.round(p * words.length);
-    words.forEach((w, i) => w.classList.toggle("lit", i < lit));
+    const p = Math.min(1, Math.max(0, (vh * 0.85 - (manTop - y)) / (manH + vh * 0.25)));
+    const now = Math.round(p * words.length);
+    for (let i = Math.min(lit, now); i < Math.max(lit, now); i++) words[i].classList.toggle("lit", i < now);
+    lit = now;
     nav.classList.toggle("is-hidden", y > lastY && y > vh * 0.6);
     lastY = y;
   };
   let lenis = null;
   const start = () => {
     if (window.Lenis && !reduce) {
-      lenis = window.lenis = new Lenis({ lerp: 0.09 });
+      lenis = window.lenis = new Lenis({ lerp: 0.16 });
       const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
       requestAnimationFrame(raf);
       lenis.on("scroll", e => onScroll(e.scroll));
@@ -841,7 +844,8 @@
       let ticking = false;
       addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(scrollY); ticking = false; }); } }, { passive: true });
     }
-    onScroll(scrollY);
+    measure(); onScroll(scrollY);
+    if (window.ResizeObserver) new ResizeObserver(measure).observe(document.body);
   };
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
     const id = a.getAttribute("href"), target = id === "#topo" ? 0 : document.querySelector(id);
@@ -860,7 +864,9 @@
   root.classList.add("has-cursor");
   const cur = document.querySelector(".cursor"), dot = cur.querySelector(".cursor-dot"), ring = cur.querySelector(".cursor-ring"), label = cur.querySelector(".cursor-label");
   let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
-  addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  let last = 0, running = false;
+  const wake = () => { if (!running) { running = true; last = performance.now(); requestAnimationFrame(loop); } };
+  addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; wake(); }, { passive: true });
   document.querySelectorAll("[data-cursor]").forEach(el => {
     el.addEventListener("mouseenter", () => { label.textContent = el.dataset.cursor; cur.classList.add("is-big"); });
     el.addEventListener("mouseleave", () => cur.classList.remove("is-big"));
@@ -883,21 +889,25 @@
   const prev = document.getElementById("preview");
   let px = mx, py = my, showing = false;
   document.querySelectorAll(".row").forEach(row => {
-    row.addEventListener("mouseenter", () => { prev.innerHTML = row.querySelector(".row-fig").innerHTML; prev.classList.add("on"); showing = true; });
+    row.addEventListener("mouseenter", () => { prev.innerHTML = row.querySelector(".row-fig").innerHTML; prev.classList.add("on"); showing = true; wake(); });
     row.addEventListener("mouseleave", () => { prev.classList.remove("on"); showing = false; });
   });
 
-  const loop = () => {
-    rx = lerp(rx, mx, 0.18); ry = lerp(ry, my, 0.18);
+  const place = () => {
     dot.style.transform = `translate(${mx}px, ${my}px)`;
     ring.style.transform = `translate(${rx}px, ${ry}px)`;
-    if (showing) {
-      px = lerp(px, mx + 32, 0.12); py = lerp(py, my - 120, 0.12);
-      prev.style.left = Math.min(px, innerWidth - 420) + "px"; prev.style.top = Math.max(16, py) + "px";
-    } else { px = mx + 32; py = my - 120; }
-    requestAnimationFrame(loop);
+    if (showing) prev.style.translate = `${Math.min(px, innerWidth - 420)}px ${Math.max(16, py)}px`;
   };
-  loop();
+  const loop = now => {
+    const dt = Math.min(0.05, Math.max(0, (now - last) / 1000)); last = now;
+    const k = 1 - Math.exp(-22 * dt), kp = 1 - Math.exp(-16 * dt);
+    rx = lerp(rx, mx, k); ry = lerp(ry, my, k);
+    if (showing) { px = lerp(px, mx + 32, kp); py = lerp(py, my - 120, kp); } else { px = mx + 32; py = my - 120; }
+    place();
+    const far = Math.abs(rx - mx) + Math.abs(ry - my) > 0.2 || (showing && Math.abs(px - mx - 32) + Math.abs(py - my + 120) > 0.2);
+    if (far) requestAnimationFrame(loop); else running = false;
+  };
+  place();
 })();
 </script>
 </body>
